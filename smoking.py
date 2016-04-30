@@ -1,6 +1,6 @@
 from datetime import datetime
 import sys
-from PyQt5.QtWidgets import (QMainWindow, QLabel, QMessageBox, QPushButton, QApplication)
+from PyQt5.QtWidgets import (QMainWindow, QLabel, QPushButton, QApplication)
 
 
 
@@ -11,11 +11,13 @@ class Smoke(QMainWindow):
 
         self.initUI()
 
-    # need display text from file. interactive!
+    # need display text from file reverse 
+    # also need add Smoking Minutes
     def initUI(self):
-        print(open('s.txt').read())
         display = open('s.txt').read()
         self.lbl = QLabel(display, self)
+        # without this f() QLable display badly 
+        self.lbl.adjustSize()
         self.lbl.move(50, 150)
 
         self.btnGo = QPushButton('Go', self)
@@ -28,20 +30,24 @@ class Smoke(QMainWindow):
         self.setWindowTitle('=+=+=+=+=+=+=+=+=+=+=')
         self.show()
 
-        # make one button witch check IN or OUT and write 
+        # make one button witch check IN or OUT and write (need?)
     def go(self):        	
         	f = open('s.txt', 'a')
         	time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
-        	f.write('C> '+time)
+        	f.write('C> '+time+'\n')
         	f.close()
-        	
-   	        
+
+        	self.lbl.setText(open('s.txt').read())
+        	self.lbl.adjustSize()
 
     def went(self):        	
         	self.f = open('s.txt', 'a')
         	time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
-        	self.f.write('C< '+time)
+        	self.f.write('C< '+time+'\n')
         	self.f.close()
+
+        	self.lbl.setText(open('s.txt').read())
+        	self.lbl.adjustSize()
 
     # def closeEvent(self, event):
         # reply = QMessageBox.question(self, 'Message',
