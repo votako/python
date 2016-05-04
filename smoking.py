@@ -10,12 +10,19 @@ class Smoke(QMainWindow):
         super().__init__()
 
         self.initUI()
-
+        #make f() work OK! need make "spetial" return data with \n?
+    def readText():
+    	f = []
+    	f = open('s.txt').read().split('\n')
+    	f.reverse()
+    	return str(f)
+    text = readText()
     # need display text from file reverse 
     # also need add Smoking Minutes
     def initUI(self):
-        display = open('s.txt').read()
-        self.lbl = QLabel(display, self)
+        # display = open('s.txt').read()
+        # self.lbl = QLabel(display, self)
+        self.lbl = QLabel(self.text, self)
         # without this f() QLable display badly 
         self.lbl.adjustSize()
         self.lbl.move(50, 150)
@@ -32,22 +39,23 @@ class Smoke(QMainWindow):
 
         # make one button witch check IN or OUT and write (need?)
     def go(self):        	
-        	f = open('s.txt', 'a')
-        	time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
-        	f.write('C> '+time+'\n')
-        	f.close()
+        f = open('s.txt', 'a')
+        time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
+        f.write('\nC> '+time)
+        f.close()
 
-        	self.lbl.setText(open('s.txt').read())
-        	self.lbl.adjustSize()
+        # self.lbl.setText()
+        self.lbl.adjustSize()
 
     def went(self):        	
-        	self.f = open('s.txt', 'a')
-        	time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
-        	self.f.write('C< '+time+'\n')
-        	self.f.close()
+        self.f = open('s.txt', 'a')
+        time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
+        self.f.write('\nC< '+time)
+        self.f.close()
 
-        	self.lbl.setText(open('s.txt').read())
-        	self.lbl.adjustSize()
+        self.lbl.setText(open('s.txt').read())
+        self.lbl.adjustSize()
+
 
     # def closeEvent(self, event):
         # reply = QMessageBox.question(self, 'Message',
