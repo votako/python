@@ -3,7 +3,6 @@ import sys
 from PyQt5.QtWidgets import (QMainWindow, QLabel, QPushButton, QApplication)
 
 
-
 class Smoke(QMainWindow):
 
     def __init__(self):
