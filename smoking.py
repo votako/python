@@ -10,21 +10,16 @@ class Smoke(QMainWindow):
         super().__init__()
 
         self.initUI()
-        #make f() work OK! need make "spetial" return data with \n?
-    def readText():
+        
+    def read_text():
     	f = []
-    	f = open('s.txt').read().split('\n')
+    	f = open('s.txt').read().split('C')
     	f.reverse()
-    	for i in f:
-    		i = i+'\n'
-    	return i
-    	# return str(f)
-    # need display text from file reverse 
+    	return ''.join(f)
+
     # also need add Smoking Minutes
     def initUI(self):
-        # display = open('s.txt').read()
-        # self.lbl = QLabel(display, self)
-        self.lbl = QLabel(Smoke.readText(), self)
+        self.lbl = QLabel(Smoke.read_text(), self)
         # without this f() QLable display badly 
         self.lbl.adjustSize()
         self.lbl.move(50, 150)
@@ -43,19 +38,19 @@ class Smoke(QMainWindow):
     def go(self):        	
         f = open('s.txt', 'a')
         time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
-        f.write('\nC> '+time)
+        f.write('C> '+time+'\n')
         f.close()
 
-        # self.lbl.setText()
+        self.lbl.setText(Smoke.read_text())
         self.lbl.adjustSize()
 
     def went(self):        	
         self.f = open('s.txt', 'a')
         time = datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M")
-        self.f.write('\nC< '+time)
+        self.f.write('C< '+time+'\n')
         self.f.close()
 
-        self.lbl.setText(open('s.txt').read())
+        self.lbl.setText(Smoke.read_text())
         self.lbl.adjustSize()
 
 
