@@ -15,14 +15,16 @@ class Smoke(QMainWindow):
     	f = []
     	f = open('s.txt').read().split('\n')
     	f.reverse()
-    	return str(f)
-    text = readText()
+    	for i in f:
+    		i = i+'\n'
+    	return i
+    	# return str(f)
     # need display text from file reverse 
     # also need add Smoking Minutes
     def initUI(self):
         # display = open('s.txt').read()
         # self.lbl = QLabel(display, self)
-        self.lbl = QLabel(self.text, self)
+        self.lbl = QLabel(Smoke.readText(), self)
         # without this f() QLable display badly 
         self.lbl.adjustSize()
         self.lbl.move(50, 150)
